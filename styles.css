@@ -1,0 +1,310 @@
+:root {
+  --bg-grad: radial-gradient(ellipse at 80% 10%,
+      #fff4d0 0%, #c9e3ff 35%, #7fb1e8 75%, #4a7fbf 100%);
+  --text: #1f2a4a;
+  --muted: #5a6890;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --shadow-dreamy: 0 30px 80px -20px rgba(60, 90, 180, 0.35),
+    0 10px 30px -10px rgba(90, 140, 200, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Mardoto", sans-serif;
+  color: var(--text);
+  background: var(--bg-grad);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.stage {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rem 1rem;
+  overflow: hidden;
+}
+
+.aurora {
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(from 180deg at 50% 50%, #bfd6ff, #d4ecff, #d3c7ff, #e1f1ff, #bfd6ff);
+  filter: blur(80px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.sun {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 220px;
+  height: 220px;
+  pointer-events: none;
+}
+.sun-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 220, 120, 0.55), transparent 65%);
+  filter: blur(20px);
+  animation: pulse 4s ease-in-out infinite;
+}
+.sun-rays {
+  position: absolute;
+  inset: 0;
+  animation: sun-spin 40s linear infinite;
+  transform-origin: center;
+}
+.sun-body {
+  position: absolute;
+  inset: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffe07a 0%, #ffc24a 70%, #f59c2a 100%);
+  box-shadow: 0 0 60px rgba(255, 200, 80, 0.9);
+  animation: pulse 3s ease-in-out infinite;
+}
+.sun-face {
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes sun-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 4px white;
+}
+
+.cloud {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.cloud-1 {
+  top: 6rem;
+  left: 2rem;
+  width: 120px;
+  animation: float-slow 8s ease-in-out infinite;
+}
+.cloud-2 {
+  bottom: 4rem;
+  right: 25%;
+  width: 90px;
+  animation: float-medium 6s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, -20px);
+  }
+}
+@keyframes float-medium {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  50% {
+    transform: translate(0, -30px) rotate(8deg);
+  }
+}
+.card {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 640px;
+  padding: 3.5rem 2.5rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 2rem;
+  box-shadow: var(--shadow-dreamy);
+  text-align: center;
+  animation: card-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.1s ease-out;
+}
+
+@keyframes card-in {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes letter-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) rotate(-8deg) scale(0.5);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.hero {
+  width: 260px;
+  margin: -120px auto 0;
+  display: block;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+  animation: float-medium 6s ease-in-out infinite;
+}
+
+.ribbon {
+  display: inline-block;
+  margin: 1rem 0 1.5rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  color: white;
+  font-family: "Noto Serif Armenian", serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #00abed, #00b9f8 12.5%, #00c0fe, #29c6ff, #42ccff, #54d2ff 37.5%, #73deff, #54d2ff 62.5%, #42ccff, #29c6ff, #00c0fe, #00b9f8 87.5%, #00abed) 0 0/200% 100%;
+  background-size: 200% 100%;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+.title {
+  font-family: "Noto Serif Armenian", serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.title span {
+  display: inline-block;
+  color: #00abed !important;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.lead {
+  font-style: italic;
+  font-size: 1.3rem;
+  margin: 1rem 0 1.5rem;
+  opacity: 0.85;
+}
+
+.sub {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.closing {
+  background: linear-gradient(90deg, #0091ff, #00baff, #0091ff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-text 4s ease-in-out infinite;
+  font-weight: 600;
+}
+
+@keyframes shimmer-text {
+  0%, 100% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+}
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 600px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail {
+  padding: 1rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, #fff, #e5f1ff);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(120, 160, 210, 0.1);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.detail:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(120, 160, 210, 0.25);
+}
+.detail .emoji {
+  font-size: 2rem;
+  animation: bounce 2.5s ease-in-out infinite;
+  display: inline-block;
+}
+.detail .emoji img {
+  width: 50%;
+}
+.detail .lbl {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+.detail .val {
+  font-family: "Noto Serif Armenian", serif;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.swatches {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.swatches span {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}/*# sourceMappingURL=styles.css.map */
